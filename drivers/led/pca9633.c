@@ -27,6 +27,7 @@ LOG_MODULE_REGISTER(pca9633);
 #define PCA9633_LED_ON          0x1     /* LED driver on */
 #define PCA9633_LED_PWM         0x2     /* Controlled through PWM */
 #define PCA9633_LED_GRP_PWM     0x3     /* Controlled through PWM/GRPPWM */
+#define PCA9633_LED_GRP_PWM     0x3     /* Controlled through PWM/GRPPWM */
 
 /* PCA9633 control register */
 #define PCA9633_MODE1           0x00
@@ -35,9 +36,13 @@ LOG_MODULE_REGISTER(pca9633);
 #define PCA9633_GRPPWM          0x06
 #define PCA9633_GRPFREQ         0x07
 #define PCA9633_LEDOUT          0x08
+#define PCA9633_ALLCALLADR      0x0C
 
 /* PCA9633 mode register 1 */
+#define PCA9633_MODE1_ALLCAL    0x01    /* All Call Address enabled */
 #define PCA9633_MODE1_SLEEP     0x10    /* Sleep Mode */
+
+
 /* PCA9633 mode register 2 */
 #define PCA9633_MODE2_DMBLNK    0x20    /* Enable blinking */
 
@@ -45,6 +50,7 @@ LOG_MODULE_REGISTER(pca9633);
 
 struct pca9633_config {
 	struct i2c_dt_spec i2c;
+	bool disable_allcall;
 };
 
 struct pca9633_data {
@@ -191,12 +197,12 @@ static int pca9633_led_init(const struct device *dev)
 		LOG_ERR("I2C bus is not ready");
 		return -ENODEV;
 	}
-
-	/* Take the LED driver out from Sleep mode. */
+	
+	/* Take the LED driver out from Sleep mode and disable All Call Address if specified in DT. */
 	if (i2c_reg_update_byte_dt(&config->i2c,
 				PCA9633_MODE1,
-				PCA9633_MODE1_SLEEP,
-				~PCA9633_MODE1_SLEEP)) {
+				config->disable_allcall ? PCA9633_MODE1_SLEEP | PCA9633_MODE1_ALLCAL : PCA9633_MODE1_SLEEP,
+				config->disable_allcall ? ~(PCA9633_MODE1_SLEEP | PCA9633_MODE1_ALLCAL) : ~PCA9633_MODE1_SLEEP)) {
 		LOG_ERR("LED reg update failed");
 		return -EIO;
 	}
@@ -218,14 +224,15 @@ static const struct led_driver_api pca9633_led_api = {
 
 #define PCA9633_DEVICE(id)						\
 	static const struct pca9633_config pca9633_##id##_cfg = {	\
-		.i2c = I2C_DT_SPEC_INST_GET(id)				\
-	};								\
+		.i2c = I2C_DT_SPEC_INST_GET(id),							\
+		.disable_allcall = DT_INST_PROP(id, disable_allcall)	\
+	};														\
 	static struct pca9633_data pca9633_##id##_data;			\
-									\
+															\
 	DEVICE_DT_INST_DEFINE(id, &pca9633_led_init, NULL,		\
-			&pca9633_##id##_data,				\
-			&pca9633_##id##_cfg, POST_KERNEL,		\
-			CONFIG_LED_INIT_PRIORITY,			\
+			&pca9633_##id##_data,							\
+			&pca9633_##id##_cfg, POST_KERNEL,				\
+			CONFIG_LED_INIT_PRIORITY,						\
 			&pca9633_led_api);
 
 DT_INST_FOREACH_STATUS_OKAY(PCA9633_DEVICE)
