@@ -27,7 +27,6 @@ LOG_MODULE_REGISTER(pca9633);
 #define PCA9633_LED_ON          0x1     /* LED driver on */
 #define PCA9633_LED_PWM         0x2     /* Controlled through PWM */
 #define PCA9633_LED_GRP_PWM     0x3     /* Controlled through PWM/GRPPWM */
-#define PCA9633_LED_GRP_PWM     0x3     /* Controlled through PWM/GRPPWM */
 
 /* PCA9633 control register */
 #define PCA9633_MODE1           0x00
