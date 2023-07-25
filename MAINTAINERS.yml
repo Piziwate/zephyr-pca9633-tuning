@@ -620,8 +620,8 @@ Documentation Infrastructure:
 Release Notes:
   status: maintained
   maintainers:
-    - nashif
-    - jgl-meta
+    - jhedberg
+    - fabiobaltieri
   files:
     - doc/releases/release-notes-*
   labels:
@@ -1073,6 +1073,8 @@ Release Notes:
   maintainers:
     - Mani-Sadhasivam
     - simonguinot
+  collaborators:
+    - bbilas
   files:
     - drivers/led/
     - include/zephyr/drivers/led/
@@ -1234,6 +1236,9 @@ Release Notes:
   status: maintained
   maintainers:
     - carlocaione
+  collaborators:
+    - gdengi
+    - nbalabak
   files:
     - drivers/pm_cpu_ops/
     - include/zephyr/drivers/pm_cpu_ops/
@@ -2072,8 +2077,6 @@ Twister:
 
 Settings:
   status: odd fixes
-  collaborators:
-    - de-nordic
   files:
     - include/zephyr/settings/
     - subsys/settings/
@@ -2289,6 +2292,22 @@ Intel Platforms (Xtensa):
   labels:
     - "platform: Intel ADSP"
 
+Intel Platforms (Agilex):
+  status: maintained
+  maintainers:
+    - gdengi
+  collaborators:
+    - nbalabak
+    - chongteikheng
+  files:
+    - boards/arm64/intel_*/
+    - soc/arm64/intel_*/
+    - dts/arm64/intel/
+    - samples/boards/intel_adsp/
+    - dts/bindings/*/intel,agilex*
+  labels:
+    - "platform: Intel SoC FPGA Agilex"
+
 NXP Platforms:
   status: maintained
   maintainers:
@@ -2460,9 +2479,9 @@ Espressif Platforms:
   files:
     - drivers/*/*esp32*.c
     - boards/xtensa/esp32*/
-    - soc/xtensa/esp32*/
+    - soc/xtensa/espressif_esp32*/
     - boards/riscv/esp32*/
-    - soc/riscv/esp32*/
+    - soc/riscv/espressif_esp32*/
     - dts/xtensa/espressif/
     - dts/riscv/espressif/
     - dts/bindings/*/*esp32*
@@ -2516,18 +2535,21 @@ TI SimpleLink Platforms:
   labels:
     - "platform: TI SimpleLink"
 
-TI Sitara Platforms:
+TI K3 Platforms:
   status: maintained
   maintainers:
     - vaishnavachath
   collaborators:
     - gramsay0
   files:
-    - boards/arm64/phycore*/
-    - dts/arm64/ti/
-    - soc/arm64/ti_sitara/
+    - boards/*/*phycore_am6*/
+    - boards/*/*ti_am6*/
+    - drivers/*/*ti_k3*/
+    - dts/*/ti/*ti_am6*/
+    - dts/bindings/*/ti,k3*
+    - soc/*/ti_k3/
   labels:
-    - "platform: TI Sitara"
+    - "platform: TI K3"
 
 Xilinx Platforms:
   status: odd fixes
@@ -2911,10 +2933,12 @@ West:
   collaborators:
     - mmahadevan108
     - danieldegrasse
+    - manuargue
   files:
     - modules/hal_nxp/
     - modules/Kconfig.imx
     - modules/Kconfig.mcux
+    - modules/Kconfig.s32
   labels:
     - manifest-hal_nxp
 

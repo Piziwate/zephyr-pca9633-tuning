@@ -78,6 +78,8 @@ Boards & SoC Support
 
 * Added support for these SoC series:
 
+  * Nuvoton NuMaker M46x series
+
 * Removed support for these SoC series:
 
 * Made these changes in other SoC series:
@@ -85,6 +87,8 @@ Boards & SoC Support
 * Added support for these ARC boards:
 
 * Added support for these ARM boards:
+
+  * Nuvoton NuMaker Platform M467
 
 * Added support for these ARM64 boards:
 
@@ -136,6 +140,8 @@ Drivers and Sensors
 
 * Clock control
 
+  * Added support for Nuvoton NuMaker M46x
+
 * Counter
 
 * Crypto
@@ -160,11 +166,18 @@ Drivers and Sensors
 
 * Flash
 
+  * Introduce npcx flash driver that supports two or more spi nor flashes via a
+    single Flash Interface Unit (FIU) module and Direct Read Access (DRA) mode
+    for better performance.
+  * Added support for Nuvoton NuMaker M46x embedded flash
+
 * FPGA
 
 * Fuel Gauge
 
 * GPIO
+
+  * Added support for Nuvoton NuMaker M46x
 
 * hwinfo
 
@@ -196,6 +209,8 @@ Drivers and Sensors
 
 * Pin control
 
+  * Added support for Nuvoton NuMaker M46x
+
 * PWM
 
 * Power domain
@@ -204,13 +219,19 @@ Drivers and Sensors
 
 * Reset
 
+  * Added support for Nuvoton NuMaker M46x
+
 * SDHC
 
 * Sensor
 
 * Serial
 
+  * Added support for Nuvoton NuMaker M46x
+
 * SPI
+
+  * Remove npcx spi driver implemented by Flash Interface Unit (FIU) module.
 
 * Timer
 
@@ -241,6 +262,14 @@ USB
 Devicetree
 **********
 
+* ``zephyr,memory-region-mpu`` was renamed ``zephyr,memory-attr``
+
+* The following macros were added:
+  :c:macro:`DT_FOREACH_NODE_VARGS`,
+  :c:macro:`DT_FOREACH_STATUS_OKAY_NODE_VARGS`
+  :c:macro:`DT_MEMORY_ATTR_FOREACH_NODE`
+  :c:macro:`DT_MEMORY_ATTR_APPLY`
+
 Libraries / Subsystems
 **********************
 
@@ -256,6 +285,10 @@ Libraries / Subsystems
 
 HALs
 ****
+
+* Nuvoton
+
+  * Added Nuvoton NuMaker M46x
 
 MCUboot
 *******
@@ -280,11 +313,5 @@ Documentation
 Tests and Samples
 *****************
 
-Issue Related Items
-*******************
-
 Known Issues
-============
-
-Addressed issues
-================
+************

@@ -147,7 +147,7 @@ manifest:
       groups:
         - hal
     - name: hal_espressif
-      revision: 9531c1c17873aa4935f85864ebafd20c02062a8f
+      revision: ae1bd648a1ac701672c46b6ff4eadfa716937ce3
       path: modules/hal/espressif
       west-commands: west/west-commands.yml
       groups:
@@ -178,7 +178,7 @@ manifest:
       groups:
         - hal
     - name: hal_nuvoton
-      revision: 8a2b5de1670b59fcacd20d7495cb1c0f26fbe7bd
+      revision: 3e0a4c4d3328b2f72b164219add19d5308b53cb5
       path: modules/hal/nuvoton
       groups:
         - hal
@@ -209,7 +209,7 @@ manifest:
       groups:
         - hal
     - name: hal_silabs
-      revision: a143f03e846eb1b7b3135f3c8192820ce1b6d9c4
+      revision: 5fbe78d3676b5500585f8e4534a8e56e7dae74a8
       path: modules/hal/silabs
       groups:
         - hal
@@ -260,7 +260,7 @@ manifest:
       revision: ce57712f3e426bbbb13acaec97b45369f716f43a
       path: modules/lib/loramac-node
     - name: lvgl
-      revision: f7cf01d413aa9e76f376e25aa7b5c08dfdbc3c24
+      revision: 5da257f782a8f9c6e265bdc60ebc2a93fdee24de
       path: modules/lib/gui/lvgl
     - name: lz4
       revision: 8e303c264fc21c2116dc612658003a22e933124d
@@ -287,7 +287,7 @@ manifest:
       groups:
         - tools
     - name: nrf_hw_models
-      revision: 33b999d50093da88cf935383da2bdac70ffd9456
+      revision: 7a5b67d9ee66d84e4ef5cb1f56c8f0f3252d5aa2
       path: modules/bsim_hw_models/nrf_hw_models
     - name: open-amp
       revision: c904a01d4a882bcbb39987e0e2ce5308f49ac7ad
