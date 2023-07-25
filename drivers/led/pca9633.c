@@ -35,10 +35,13 @@ LOG_MODULE_REGISTER(pca9633);
 #define PCA9633_GRPPWM          0x06
 #define PCA9633_GRPFREQ         0x07
 #define PCA9633_LEDOUT          0x08
+#define PCA9633_ALLCALLADR      0x0C
 
 /* PCA9633 mode register 1 */
 #define PCA9633_MODE1_ALLCAL    0x01    /* All Call Address enabled */
 #define PCA9633_MODE1_SLEEP     0x10    /* Sleep Mode */
+
+
 /* PCA9633 mode register 2 */
 #define PCA9633_MODE2_DMBLNK    0x20    /* Enable blinking */
 
@@ -224,11 +227,11 @@ static const struct led_driver_api pca9633_led_api = {
 		.disable_allcall = DT_INST_PROP(id, disable_allcall)	\
 	};								\
 	static struct pca9633_data pca9633_##id##_data;			\
-									\
+															\
 	DEVICE_DT_INST_DEFINE(id, &pca9633_led_init, NULL,		\
-			&pca9633_##id##_data,				\
-			&pca9633_##id##_cfg, POST_KERNEL,		\
-			CONFIG_LED_INIT_PRIORITY,			\
+			&pca9633_##id##_data,							\
+			&pca9633_##id##_cfg, POST_KERNEL,				\
+			CONFIG_LED_INIT_PRIORITY,						\
 			&pca9633_led_api);
 
 DT_INST_FOREACH_STATUS_OKAY(PCA9633_DEVICE)
